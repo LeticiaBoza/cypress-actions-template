@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       spec:
-        description: Run by cypress command line
+        description: Run by cypress comand line
         default: cypress/e2e/*
 
 jobs:
@@ -17,24 +17,15 @@ jobs:
       - name: Get Code
         uses: actions/checkout@v4.1.7
 
-      - name: Cache NPM Dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-${{ github.sha }}-npm-cache
-          restore-keys: |
-            ${{ runner.os }}-npm-cache
-
-      - name: Install Dependencies
-        run: npm install
-
       - name: Cypress run
         uses: cypress-io/github-action@v6.5.0
         with:
+          install-command: npm install
           browser: electron
           record: true
           group: UI Electron
           spec: ${{ github.event.inputs.spec }}
+          ci-build-id: ${{ github.run_id }}-electron
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -49,24 +40,15 @@ jobs:
       - name: Get Code
         uses: actions/checkout@v4.1.7
 
-      - name: Cache NPM Dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-${{ github.sha }}-npm-cache
-          restore-keys: |
-            ${{ runner.os }}-npm-cache
-
-      - name: Install Dependencies
-        run: npm install
-
       - name: Cypress run
         uses: cypress-io/github-action@v6.5.0
         with:
+          install-command: npm install
           browser: chrome
           record: true
           group: UI Chrome
           spec: ${{ github.event.inputs.spec }}
+          ci-build-id: ${{ github.run_id }}-chrome
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -81,24 +63,15 @@ jobs:
       - name: Get Code
         uses: actions/checkout@v4.1.7
 
-      - name: Cache NPM Dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-${{ github.sha }}-npm-cache
-          restore-keys: |
-            ${{ runner.os }}-npm-cache
-
-      - name: Install Dependencies
-        run: npm install
-
       - name: Cypress run
         uses: cypress-io/github-action@v6.5.0
         with:
+          install-command: npm install
           browser: firefox
           record: true
           group: UI Firefox
           spec: ${{ github.event.inputs.spec }}
+          ci-build-id: ${{ github.run_id }}-firefox
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
