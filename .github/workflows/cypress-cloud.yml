@@ -42,9 +42,9 @@ jobs:
         uses: cypress-io/github-action@v6.5.0
         with:
           install-command: npm install
-          browser: electron
+          browser: chrome
           record: true
-          group: UI Electron
+          group: UI chrome
           spec: ${{ github.event.inputs.spec }}
         env:
           CYPRESS_RECORD_KEY: 64db8c73-f18e-4d44-8a19-6570aa7819cc
@@ -63,9 +63,9 @@ jobs:
         uses: cypress-io/github-action@v6.5.0
         with:
           install-command: npm install
-          browser: electron
+          browser: firefox
           record: true
-          group: UI Electron
+          group: UI firefox
           spec: ${{ github.event.inputs.spec }}
         env:
           CYPRESS_RECORD_KEY: 64db8c73-f18e-4d44-8a19-6570aa7819cc
