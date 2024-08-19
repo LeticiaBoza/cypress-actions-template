@@ -21,7 +21,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-npm-cache
+          key: ${{ runner.os }}-${{ github.sha }}-npm-cache
           restore-keys: |
             ${{ runner.os }}-npm-cache
 
@@ -53,7 +53,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-npm-cache
+          key: ${{ runner.os }}-${{ github.sha }}-npm-cache
           restore-keys: |
             ${{ runner.os }}-npm-cache
 
@@ -65,7 +65,7 @@ jobs:
         with:
           browser: chrome
           record: true
-          group: UI chrome
+          group: UI Chrome
           spec: ${{ github.event.inputs.spec }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
@@ -85,7 +85,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-npm-cache
+          key: ${{ runner.os }}-${{ github.sha }}-npm-cache
           restore-keys: |
             ${{ runner.os }}-npm-cache
 
@@ -97,7 +97,7 @@ jobs:
         with:
           browser: firefox
           record: true
-          group: UI firefox
+          group: UI Firefox
           spec: ${{ github.event.inputs.spec }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
